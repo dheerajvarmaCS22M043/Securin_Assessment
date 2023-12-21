@@ -1,0 +1,67 @@
+//Part A:
+#include <bits/stdc++.h>
+using namespace std;
+void number_of_Combinations(vector<int>& dice_A, vector<int>& dice_B){
+    cout<<"Number of Combinations possible are: "<<dice_A.size() * dice_B.size()<<endl;
+    return;
+}
+void allCombinations(vector<int>& dice_A, vector<int>& dice_B){
+    vector<vector<pair<int,int>>>combos(6,vector<pair<int,int>>(6));
+    cout<<"All possible combinations:"<<endl;
+    for(int i=0;i<dice_A.size();i++){
+        for(int j=0;j<dice_B.size();j++){
+            combos[i][j] = {dice_A[i], dice_B[j]};
+        }
+    }
+    for(int i=0;i<dice_A.size();i++){
+        for(int j=0;j<dice_B.size();j++){
+            cout<<"{"<<combos[i][j].first<<","<<combos[i][j].second<<"}, ";
+        }
+        cout<<endl;
+    }
+    return;
+}
+void probabilityOfAllSums(vector<int>& dice_A, vector<int>& dice_B){
+    map<int,int>mp;
+    for(int i=0;i<dice_A.size();i++){
+        for(int j=0;j<dice_B.size();j++){
+            int temp = dice_A[i]+dice_B[j];
+            mp[temp]++;
+        }
+    }
+    cout<<"Probabilities of all combinations are:"<<endl;
+    for(auto x: mp){
+        cout<<"probability of "<<x.first<<": "<<x.second<<"/"<<36<<endl;
+    }
+    return;
+}
+int main() {
+    std::vector<int> dice_A = {1, 2, 3, 4, 5, 6};
+    std::vector<int> dice_B = {1, 2, 3, 4, 5, 6};
+    number_of_Combinations(dice_A, dice_B);
+    allCombinations(dice_A, dice_B);
+    probabilityOfAllSums(dice_A, dice_B);
+}
+
+
+//Output for partA:
+Number of Combinations possible are: 36
+All possible combinations:
+{1,1}, {1,2}, {1,3}, {1,4}, {1,5}, {1,6}, 
+{2,1}, {2,2}, {2,3}, {2,4}, {2,5}, {2,6}, 
+{3,1}, {3,2}, {3,3}, {3,4}, {3,5}, {3,6}, 
+{4,1}, {4,2}, {4,3}, {4,4}, {4,5}, {4,6}, 
+{5,1}, {5,2}, {5,3}, {5,4}, {5,5}, {5,6}, 
+{6,1}, {6,2}, {6,3}, {6,4}, {6,5}, {6,6}, 
+Probabilities of all combinations are:
+probability of 2: 1/36
+probability of 3: 2/36
+probability of 4: 3/36
+probability of 5: 4/36
+probability of 6: 5/36
+probability of 7: 6/36
+probability of 8: 5/36
+probability of 9: 4/36
+probability of 10: 3/36
+probability of 11: 2/36
+probability of 12: 1/36
